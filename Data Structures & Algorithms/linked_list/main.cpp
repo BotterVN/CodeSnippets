@@ -60,6 +60,7 @@ public:
     }
     
     inline unsigned int getLength() { return length; }
+    
     void append(T& t)
     {
         length++;
@@ -102,7 +103,7 @@ public:
             i++;
             r = r->next;
         }
-        // this code never run because have checked range above
+        // the code line below never run because have checked range above
         return false;
     }
     
@@ -131,7 +132,7 @@ public:
             i++;
             r = r->next;
         }
-        // this code never run because have checked range above
+        // the code line below never run because have checked range above
         return false;
     }
 };
@@ -166,10 +167,11 @@ int main(int argc, const char * argv[])
     list.remove(1);
     print(list);
     cout << "remove last ------------\n";
-    list.remove(4);
+    list.remove(list.getLength() - 1);
     print(list);
     cout << "remove first ------------\n";
     list.remove(0);
     print(list);
+
     return 0;
 }
