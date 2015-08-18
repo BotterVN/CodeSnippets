@@ -18,7 +18,7 @@ namespace Botter.CodeSnippets.DSA.Sort
 		        }
 	        }
         }
-		public void Swap(ref int a, ref int b)
+	public void Swap(ref int a, ref int b)
         {
             a = a + b;
             b = a - b;
