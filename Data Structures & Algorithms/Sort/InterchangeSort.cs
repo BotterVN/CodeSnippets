@@ -17,7 +17,7 @@ namespace Botter.CodeSnippets.DSA.Sort
                     if (arr[j] < arr[i])
                     {
                         Swap(ref arr[j], ref arr[i]);				        
-		     }
+		    }
 		}		
 	    }
         }
