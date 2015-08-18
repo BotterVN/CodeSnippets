@@ -20,7 +20,7 @@ namespace Botter.CodeSnippets.DSA.Sort
 
         private int Partition(int[] m, int leftIdx, int rightIdx)
         {
-            // get pivot as the left most element of the array
+            // get pivot as the right most element of the array
             var pivot = m[rightIdx];
             var i = leftIdx;
 
