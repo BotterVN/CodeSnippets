@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HaNoi_Tower
+namespace Botter.CodeSnippets.DSA.Recursive
 {
     class Program
     {
@@ -14,6 +14,7 @@ namespace HaNoi_Tower
 
             Console.ReadLine();
         }
+		
         static void Move(int plate, char first, char final, char middle)
         {
             if (plate == 1) Console.WriteLine("{0} to {1}", first, final);
