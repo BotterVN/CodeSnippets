@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Botter.CodeSnippets.DSA.Sort
+namespace Botter.CodeSnippets.DSA.Search
 {
     class BinarySearch
     {
