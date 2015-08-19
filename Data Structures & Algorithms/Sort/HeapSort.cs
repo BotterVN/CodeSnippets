@@ -1,3 +1,4 @@
+using BotterDSA.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Botter.CodeSnippets.DSA.Sort
             var heapSize = arr.Length;
             for (int i = arr.Length - 1; i > 0; i--)
             {
-                Swap(arr, i, 0);
+                BotterUtils.Swap(ref arr[i], ref arr[0]);
                 heapSize--;
                 Heapify(arr, 0, heapSize);
             }
@@ -45,7 +46,7 @@ namespace Botter.CodeSnippets.DSA.Sort
 
             if (largest != idx)
             {
-                Swap(arr, largest, idx);
+                BotterUtils.Swap(ref arr[largest], ref arr[idx]);
                 Heapify(arr, largest, heapSize);
             }
         }
@@ -58,15 +59,6 @@ namespace Botter.CodeSnippets.DSA.Sort
         private int Right(int idx)
         {
             return idx * 2 + 2;
-        }
-        #endregion
-
-        #region Helpers
-        private void Swap(int[] arr, int i, int j)
-        {
-            var temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
         }
         #endregion
     }

@@ -72,6 +72,7 @@
     <Compile Include="Sort\ShakerSort.cs" />
     <Compile Include="Tests\TestLinkedList.cs" />
     <Compile Include="Tests\TestSort.cs" />
+    <Compile Include="Utils\BotterUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

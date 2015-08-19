@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BotterDSA.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,7 @@ namespace Botter.CodeSnippets.DSA.Sort
                 // put minimum element to ordered list
                 if (minIdx != i)
                 {
-                    var temp = arr[minIdx];
-                    arr[minIdx] = arr[i];
-                    arr[i] = temp;
+                    BotterUtils.Swap(ref arr[minIdx], ref arr[i]);
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BotterDSA.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,9 +34,7 @@ namespace Botter.CodeSnippets.DSA.Sort
 			{
                 if (m[j] <= pivot) 
                 {
-                    var tmp = m[i];
-                    m[i] = m[j];
-                    m[j] = tmp;
+                    BotterUtils.Swap(ref m[i], ref m[j]);
 
                     i++;
                 }
