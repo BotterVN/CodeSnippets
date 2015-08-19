@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkedList_Postfix
+namespace Botter.CodeSnippets.DSA.DataStructure
 {
     public class Node<T>
     {

@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Linked List\LinkedList.cs" />
+    <Compile Include="Linked List\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sort\BubleSort.cs" />
     <Compile Include="Sort\HeapSort.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="Sort\ShakerSort.cs" />
+    <Compile Include="Tests\TestLinkedList.cs" />
     <Compile Include="Tests\TestSort.cs" />
   </ItemGroup>
   <ItemGroup>

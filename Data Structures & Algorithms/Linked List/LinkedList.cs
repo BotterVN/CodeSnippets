@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkedList_Postfix
+namespace Botter.CodeSnippets.DSA.DataStructure
 {
     public class LinkedList<T>
     {
-        public Node<T> Root { get; set; }
-        public int Length { get; set; }
+        private Node<T> Root { get; set; }
+        private int Length { get; set; }
 
         public void Append(T content)
         {
@@ -114,16 +114,18 @@ namespace LinkedList_Postfix
             }
 
             return null;
-        }        
+        }
 
-        public string ToOutString()
+        public override string ToString()
         {
             var st = "";
             var curNode = Root;
             while (curNode != null)
             {
-                st += curNode.Content.ToString() + " ";
+                st += curNode.Content.ToString();
                 curNode = curNode.Next;
+                if (curNode != null)
+                    st += " ";
             }
 
             return st;
