@@ -8,7 +8,12 @@ namespace Botter.CodeSnippets.DSA.Sort
 {
     public class QuickSort
     {
-        public void Sort(int[] m, int leftIdx, int rightIdx)
+        public void Sort(int[] m)
+        {
+            Sort(m, 0, m.Length - 1);
+        }
+
+        private void Sort(int[] m, int leftIdx, int rightIdx)
         {
             if (leftIdx < rightIdx)
             {

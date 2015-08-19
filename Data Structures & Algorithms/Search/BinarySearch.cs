@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Botter.CodeSnippets.DSA.Sort
+namespace Botter.CodeSnippets.DSA.Search
 {
     class BinarySearch
     {
@@ -14,13 +14,13 @@ namespace Botter.CodeSnippets.DSA.Sort
             int right = arr.Length - 1;
             int middle = -1;
 		
-		    while (left <= right) 
+	    while (left <= right) 
             {
-			    middle = (left + right) / 2;
+		middle = (left + right) / 2;
                 if (value == arr[middle])
                 {
-				    return middle;
-			    }
+		    return middle;
+		}
                 else if (value < arr[middle])
                 {
                     right = middle - 1;
@@ -29,9 +29,9 @@ namespace Botter.CodeSnippets.DSA.Sort
                 {
                     left = middle + 1;
                 }                 	
-		    }
-            // return -1 (value is not exist in array)
-            return middle;
+	    }
+            // value is not exist in array
+            return -1;
         }        
     }
 }
