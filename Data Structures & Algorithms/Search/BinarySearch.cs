@@ -13,14 +13,14 @@ namespace Botter.CodeSnippets.DSA.Search
             int left = 0;
             int right = arr.Length - 1;
             int middle = -1;
-		
-	    while (left <= right) 
+
+            while (left <= right)
             {
-		middle = (left + right) / 2;
+                middle = (left + right) / 2;
                 if (value == arr[middle])
                 {
-		    return middle;
-		}
+                    return middle;
+                }
                 else if (value < arr[middle])
                 {
                     right = middle - 1;
@@ -28,10 +28,10 @@ namespace Botter.CodeSnippets.DSA.Search
                 else
                 {
                     left = middle + 1;
-                }                 	
-	    }
+                }
+            }
             // value is not exist in array
             return -1;
-        }        
+        }
     }
 }
