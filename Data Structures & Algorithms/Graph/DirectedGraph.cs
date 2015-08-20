@@ -33,6 +33,11 @@ namespace Botter.CodeSnippets.DSA.Graph
             descendants.Add(toVertex);
         }
 
+        public int IndexOf(T node)
+        {
+            return _vertices.IndexOf(node);
+        }
+
         public T[] GetVertices()
         {
             return _vertices.ToArray();
@@ -72,8 +77,8 @@ namespace Botter.CodeSnippets.DSA.Graph
             var vertices = GetVertices();
             bool[,] edges = GetEdges();
 
-            var fromIdx = Array.IndexOf(vertices, fromVertex);
-            var toIdx = Array.IndexOf(vertices, toVertex);
+            var fromIdx = IndexOf(fromVertex);
+            var toIdx = IndexOf(toVertex);
 
             var traversingNodes = new Queue<int>();
             traversingNodes.Enqueue(fromIdx);

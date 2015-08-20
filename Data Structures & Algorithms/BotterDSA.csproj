@@ -60,9 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graph\BFS.cs" />
+    <Compile Include="Graph\DFS.cs" />
     <Compile Include="Graph\DirectedGraph.cs" />
-    <Compile Include="Linked List\LinkedList.cs" />
-    <Compile Include="Linked List\Node.cs" />
+    <Compile Include="List\LinkedList.cs" />
+    <Compile Include="List\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\BinarySearch.cs" />
     <Compile Include="Search\BruteForce.cs" />
