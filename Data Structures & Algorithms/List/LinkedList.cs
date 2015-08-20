@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Botter.CodeSnippets.DSA.DataStructure
+namespace Botter.CodeSnippets.DSA.DataStructure.List
 {
     public class LinkedList<T>
     {
         private Node<T> Root { get; set; }
-        private int Length { get; set; }
+        public int Length { get; private set; }
 
         public void Append(T content)
         {
@@ -116,6 +116,7 @@ namespace Botter.CodeSnippets.DSA.DataStructure
             return null;
         }
 
+        #region additional overriden methods, not related to linked list
         public override string ToString()
         {
             var st = "";
@@ -143,5 +144,6 @@ namespace Botter.CodeSnippets.DSA.DataStructure
 
             return st;
         }
+        #endregion
     }
 }
