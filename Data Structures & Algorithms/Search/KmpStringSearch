@@ -31,13 +31,17 @@ namespace KmpSearchAlgorithm
             {
                 if (text[i] == word[currentWordIndex])
                 {
+                    if (currentWordIndex == word.Length - 1)
+                    {
+                        return i - currentWordIndex;
+                    }
+                    
                     if (text[i] == word[0] 
                         && currentWordIndex != 0 
                         && nextPrefix < 0)
                     {
                         nextPrefix = i;
                     }
-
                     currentWordIndex++;
                     i++;
                 }
@@ -47,12 +51,6 @@ namespace KmpSearchAlgorithm
                     currentWordIndex = 0;
                     nextPrefix = -1;
                 }
-
-                if (currentWordIndex == word.Length)
-                {
-                    return i - currentWordIndex;
-                }
-
             }
             return -1;
         }
