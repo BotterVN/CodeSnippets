@@ -10,11 +10,13 @@ namespace BotterDSA.Graph
     {
         public Node()
         {
+            IsInTraversingSet = false;
             IsVisited = false;
-            Distance = -1;
+            Distance = Int32.MaxValue;
             PrevNode = -1;
         }
 
+        public bool IsInTraversingSet { get; set; }
         public bool IsVisited { get; set; }
         public int Distance { get; set; }
         public int PrevNode { get; set; }
@@ -39,6 +41,7 @@ namespace BotterDSA.Graph
 
             var curNode = fromIdx;
             nodes[curNode].Distance = 0;
+            nodes[curNode].IsInTraversingSet = true;
 
             while(curNode != -1)
             {
@@ -48,9 +51,11 @@ namespace BotterDSA.Graph
                 {
                     if(!nodes[i].IsVisited && _edges[curNode, i] != -1)
                     {
-                        if(i == toIdx)
+                        nodes[i].IsInTraversingSet = true;
+
+                        if (i == toIdx) // I found you
                         {
-                            // I found you
+                            // generate path
                             var path = new List<T>();
                             nodes[toIdx].PrevNode = curNode;
                             var iterNode = toIdx;
@@ -68,7 +73,7 @@ namespace BotterDSA.Graph
 
                             return path.ToArray();
                         }
-                        else if(nodes[i].Distance == -1 || nodes[curNode].Distance + _edges[curNode, i] < nodes[i].Distance)
+                        else if(nodes[curNode].Distance + _edges[curNode, i] < nodes[i].Distance)
                         {
                             nodes[i].Distance = nodes[curNode].Distance + _edges[curNode, i];
                             nodes[i].PrevNode = curNode;
@@ -76,16 +81,18 @@ namespace BotterDSA.Graph
                     }
                 }
 
-                curNode = -1;
-                var minDistance = -1;
+                // find next node, if not found -> curNode = -1
+                var minDistance = Int32.MaxValue;
                 for (int i = 0; i < _vertices.Length; i++)
                 {
-                    if (!nodes[i].IsVisited && nodes[i].Distance > 0 && (curNode == -1 || nodes[i].Distance < minDistance))
+                    if (!nodes[i].IsVisited && nodes[i].IsInTraversingSet && nodes[i].Distance < minDistance)
                     {
                         curNode = i;
                         minDistance = nodes[i].Distance;
                     }
                 }
+                if (minDistance == Int32.MaxValue)
+                    curNode = -1;
             }
 
             return null;
