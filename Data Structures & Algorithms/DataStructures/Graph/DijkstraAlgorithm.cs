@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BotterDSA.Graph
 {
-    class Node
+    public class Node
     {
         public Node()
         {

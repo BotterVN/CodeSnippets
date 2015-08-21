@@ -80,14 +80,7 @@
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="Sort\ShakerSort.cs" />
-    <Compile Include="Tests\TestGraph.cs" />
-    <Compile Include="Tests\TestList.cs" />
-    <Compile Include="Tests\TestSearch.cs" />
-    <Compile Include="Tests\TestSort.cs" />
     <Compile Include="Utils\BotterUtils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Botter.CodeSnippets.DSA.Graph
 {
-    class DFS<T>
+    public class DFS<T>
     {
         DirectedGraph<T> _graph;
 

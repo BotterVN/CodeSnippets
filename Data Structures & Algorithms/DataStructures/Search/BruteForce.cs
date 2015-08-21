@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Botter.CodeSnippets.DSA.Search
 {
-    class BruteForce
+    public class BruteForce
     {
         public int Search(string data, string key) 
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Botter.CodeSnippets.DSA.Sort
 {
-    class InterchangeSort
+    public class InterchangeSort
     {
         public void Sort(int[] arr)
         {

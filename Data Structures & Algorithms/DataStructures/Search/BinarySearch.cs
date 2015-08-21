@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Botter.CodeSnippets.DSA.Search
 {
-    class BinarySearch
+    public class BinarySearch
     {
         public int Search(int[] arr, int value)
         {

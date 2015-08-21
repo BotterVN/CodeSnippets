@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Botter.CodeSnippets.DSA.Sort
 {
-    class ShakerSort
+    public class ShakerSort
     {
         public void Sort(int[] arr)
         {
