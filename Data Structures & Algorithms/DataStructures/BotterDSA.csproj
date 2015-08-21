@@ -76,7 +76,7 @@
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="Sort\ShakerSort.cs" />
-    <Compile Include="Tests\TestLinkedList.cs" />
+    <Compile Include="Tests\TestList.cs" />
     <Compile Include="Tests\TestSearch.cs" />
     <Compile Include="Tests\TestSort.cs" />
     <Compile Include="Utils\BotterUtils.cs" />

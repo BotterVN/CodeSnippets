@@ -8,12 +8,14 @@ namespace Botter.CodeSnippets.DSA.DataStructure.List
 {
     public class Queue<T>
     {
-        private T _tail;
         private LinkedList<T> _list = null;
 
-        public T Top 
+        public T Top()
         {
-            get { return _tail;}
+            if (IsEmpty())
+                throw new Exception("queue is empty");
+
+            return _list.Get(0).Content;
         }
 
         public Queue()
@@ -21,21 +23,25 @@ namespace Botter.CodeSnippets.DSA.DataStructure.List
             _list = new LinkedList<T>();
         }
 
+        public bool IsEmpty()
+        {
+            return (_list.Length == 0);
+        }
+
         public void EnQueue(T element) 
         {
-            _tail = element;
             _list.Append(element);
         }
 
         public T DeQueue()
         {
+            if (IsEmpty())
+                throw new Exception("queue is empty");
+
             var element = _list.Get(0);
             _list.Remove(0);
 
-            if (element != null)
-                return element.Content;
-
-            return _tail;
+            return element.Content;
         }
     }
 }

@@ -9,11 +9,13 @@ namespace Botter.CodeSnippets.DSA.DataStructure.List
     public class Stack<T>
     {
         private LinkedList<T> _list = null;
-        private T _top;
 
-        public T Top 
+        public T Top()
         {
-            get { return _top; }
+            if (IsEmpty())
+                throw new Exception("Stack is empty");
+
+            return _list.Get(_list.Length-1).Content;
         }
 
         public Stack()
@@ -24,21 +26,22 @@ namespace Botter.CodeSnippets.DSA.DataStructure.List
         public void Push(T element)
         {
             _list.Append(element);
-            _top = element;
         }
 
         public T Pop()
         {
-            var endIdx = _list.Length - 1;
-            if (endIdx >= 0)
-            {
-                _top = _list.Get(endIdx).Content;
-                _list.Remove(endIdx);
+            if(IsEmpty())
+                throw new Exception("Stack is empty");
 
-                return _top;
-            }
-            else
-                throw new Exception("Stack empty");
+            var top = _list.Get(_list.Length-1).Content;
+            _list.Remove(_list.Length-1);
+
+            return top;
+        }
+
+        public bool IsEmpty()
+        {
+            return (_list.Length == 0);
         }
     }
 }
