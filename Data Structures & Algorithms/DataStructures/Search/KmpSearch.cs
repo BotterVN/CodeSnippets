@@ -4,20 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KmpSearchAlgorithm
+namespace Botter.CodeSnippets.DSA.Search
 {
-    class Program
+    public class KmpSearch
     {
-        static void Main(string[] args)
-        {
-            
-            var text = Console.ReadLine();
-            var word = Console.ReadLine();
-
-            Console.WriteLine(KmpSearchString(text, word));
-        }
-
-        private static int KmpSearchString(string text, string word)
+        private int Search(string text, string word)
         {
             if (text.Length < word.Length)
             {

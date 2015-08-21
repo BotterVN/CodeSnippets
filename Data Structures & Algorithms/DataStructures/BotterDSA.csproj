@@ -67,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\BinarySearch.cs" />
     <Compile Include="Search\BruteForce.cs" />
+    <Compile Include="Search\KmpSearch.cs" />
     <Compile Include="Search\LinearSearch.cs" />
     <Compile Include="Sort\BubleSort.cs" />
     <Compile Include="Sort\HeapSort.cs" />
