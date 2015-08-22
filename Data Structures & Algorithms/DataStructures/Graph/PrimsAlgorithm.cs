@@ -17,38 +17,48 @@ namespace Botter.CodeSnippets.DSA.Graph
             _edges = edges;
         }
 
-        public T[] FindSpanningTree()
+        public int[,] FindSpanningTree()
         {
-            var spanningTree = new T[_vertices.Length];
-            var spanningTreeIdx = new int[_vertices.Length];
+            var spanningTree = new int[_vertices.Length, _vertices.Length];
+            for (int i = 0; i < _vertices.Length; i++)
+            {
+                for (int j = 0; j < _vertices.Length; j++)
+                {
+                    spanningTree[i, j] = -1;
+                }
+            }
+
             var isVisited = Enumerable.Repeat(false, _vertices.Length).ToArray();
 
-            var curVertexIdx = 0;
-            spanningTreeIdx[curVertexIdx++] = 0;
-            isVisited[0] = true;
+            var traversedNodes = new List<int>();
+            traversedNodes.Add(0);
 
-            while(curVertexIdx < _vertices.Length)
+            while (traversedNodes.Count < _vertices.Length)
             {
-                var minimumNodeIdx = -1;
+                var fromNode = -1;
+                var toNode = -1;
                 var minDist = Int32.MaxValue;
 
-                for (int i = 0; i < curVertexIdx; i++)
+                foreach (var i in traversedNodes)
                 {
                     for (int j = 0; j < _vertices.Length; j++)
                     {
-                        if (!isVisited[j] && _edges[i, j] != -1 && _edges[i, j] < minDist)
+                        if (!traversedNodes.Contains(j) && _edges[i, j] != -1 && _edges[i, j] < minDist)
                         {
-                            minimumNodeIdx = j;
+                            fromNode = i;
+                            toNode = j;
                             minDist = _edges[i, j];
                         }
                     }
                 }
 
-                spanningTreeIdx[curVertexIdx++] = minimumNodeIdx;
-                isVisited[minimumNodeIdx] = true;
+                spanningTree[fromNode, toNode] = minDist;
+                spanningTree[toNode, fromNode] = minDist;
+
+                traversedNodes.Add(toNode);
             }
 
-            return spanningTreeIdx.Select(idx => _vertices[idx]).ToArray();
+            return spanningTree;
         }
     }
 }

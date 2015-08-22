@@ -75,7 +75,18 @@ namespace BotterDSA.Tests
         {
             var prims = new PrimsAlgorithm<int>(_vertices, _edges);
             var spanningTree = prims.FindSpanningTree();
-            CollectionAssert.AreEqual(spanningTree, null);
+
+            var expectedTree = new int[,]
+            {
+                {-1,7,9,-1,-1,-1},
+                {7,-1,-1,-1,-1,-1},
+                {9,-1,-1,-1,-1,2},
+                {-1,-1,-1,-1,6,-1},
+                {-1,-1,-1,6,-1,9},
+                {-1,-1,2,-1,9,-1}
+            };
+
+            CollectionAssert.AreEqual(spanningTree, expectedTree);
         }
     }
 }
