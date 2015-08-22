@@ -88,5 +88,22 @@ namespace BotterDSA.Tests
 
             CollectionAssert.AreEqual(spanningTree, expectedTree);
         }
+
+        [TestMethod]
+        public void TestFordFulkerson()
+        {
+            var ff = new FordFulkerson();
+            ff.AddEdge('s', 'o', 3);
+            ff.AddEdge('s', 'p', 3);
+            ff.AddEdge('o', 'p', 2);
+            ff.AddEdge('o', 'q', 3);
+            ff.AddEdge('p', 'r', 2);
+            ff.AddEdge('r', 't', 3);
+            ff.AddEdge('q', 'r', 4);
+            ff.AddEdge('q', 't', 2);
+
+            var maxTraffic = ff.CalculateMaxTraffic('s', 't');
+            Assert.AreEqual(maxTraffic, 5);
+        }
     }
 }

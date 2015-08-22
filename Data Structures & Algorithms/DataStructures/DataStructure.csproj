@@ -64,6 +64,7 @@
     <Compile Include="Graph\DFS.cs" />
     <Compile Include="Graph\DijkstraAlgorithm.cs" />
     <Compile Include="Graph\DirectedGraph.cs" />
+    <Compile Include="Graph\FordFulkerson.cs" />
     <Compile Include="Graph\PrimsAlgorithm.cs" />
     <Compile Include="List\LinkedList.cs" />
     <Compile Include="List\Node.cs" />
