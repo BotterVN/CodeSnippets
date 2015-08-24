@@ -12,26 +12,31 @@ namespace Botter.CodeSnippets.DSA.Sort
         public void Sort(int[] arr)
         {
             int k = 0;
-	        int left = 0;
-	        int right = arr.Length - 1;
+            int left = 0;
+            int right = arr.Length - 1;
 
-	        while (left < right) {
-		        for (int i = right; i > left; i--) {
-			        if (arr[i] < arr[i - 1]) {
-				        BotterUtils.Swap(ref arr[i], ref arr[i - 1]);
-				        k = i;                        
-			        }
+            while (left < right) 
+            {
+	        for (int i = right; i > left; i--) 
+	        {
+		    if (arr[i] < arr[i - 1]) 
+		    {
+		        BotterUtils.Swap(ref arr[i], ref arr[i - 1]);
+		        k = i;
+		    }
                 }
-		        left = k;
+	        left = k;
 
-		        for (int i = left; i < right; i++) {
-			        if (arr[i] > arr[i + 1]) {
-				        BotterUtils.Swap(ref arr[i], ref arr[i + 1]);
-				        k = i;                        
-			        }
+	        for (int i = left; i < right; i++) 
+	        {
+		    if (arr[i] > arr[i + 1]) 
+		    {
+		        BotterUtils.Swap(ref arr[i], ref arr[i + 1]);
+		        k = i;                        
+		    }
                 }
-		        right = k;
-	        }
+	        right = k;
+            }
         }
     }
 }

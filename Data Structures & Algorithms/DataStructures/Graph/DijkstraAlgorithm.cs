@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BotterDSA.Graph
+namespace Botter.CodeSnippets.DSA.Graph
 {
     public class Node
     {

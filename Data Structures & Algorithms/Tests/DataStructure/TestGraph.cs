@@ -1,5 +1,4 @@
 ﻿using Botter.CodeSnippets.DSA.Graph;
-using BotterDSA.Graph;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,16 @@ namespace BotterDSA.Tests
     public class TestGraph
     {
         DirectedGraph<char> _graph;
+        int[] _vertices = new int[] { 1, 2, 3, 4, 5, 6 };
+        int[,] _edges = new int[,]
+            {
+                { -1, 7, 9, -1, -1, 14 },
+                { 7, -1, 10, 15, -1, -1 },
+                { 8, 10, -1, 11, -1, 2 },
+                { -1, 15, 11, -1, 6, -1 },
+                { -1, -1, -1, 6, -1, 9 },
+                { 14, -1, 2, -1, 9, -1}
+            };
 
         [TestInitialize]
         public void InitGraph()
@@ -56,20 +65,45 @@ namespace BotterDSA.Tests
         [TestMethod]
         public void TestDijkstra()
         {
-            var vertices = new int[] { 1, 2, 3, 4, 5, 6 };
-            var edges = new int[,]
-            {
-                { -1, 7, 9, -1, -1, 14 },
-                { 7, -1, 10, 15, -1, -1 },
-                { 8, 10, -1, 11, -1, 2 },
-                { -1, 15, 11, -1, 6, -1 },
-                { -1, -1, -1, 6, -1, 9 },
-                { 14, -1, 2, -1, 9, -1}
-            };
-
-            var dijkstra = new DijkstraAlgorithm<int>(vertices, edges);
+            var dijkstra = new DijkstraAlgorithm<int>(_vertices, _edges);
             var path = dijkstra.FindPath(0, 4);
             CollectionAssert.AreEqual(path, new int[] { 1, 3, 6, 5 });            
+        }
+
+        [TestMethod]
+        public void TestPrims()
+        {
+            var prims = new PrimsAlgorithm<int>(_vertices, _edges);
+            var spanningTree = prims.FindSpanningTree();
+
+            var expectedTree = new int[,]
+            {
+                {-1,7,9,-1,-1,-1},
+                {7,-1,-1,-1,-1,-1},
+                {9,-1,-1,-1,-1,2},
+                {-1,-1,-1,-1,6,-1},
+                {-1,-1,-1,6,-1,9},
+                {-1,-1,2,-1,9,-1}
+            };
+
+            CollectionAssert.AreEqual(spanningTree, expectedTree);
+        }
+
+        [TestMethod]
+        public void TestFordFulkerson()
+        {
+            var ff = new FordFulkerson();
+            ff.AddEdge('s', 'o', 3);
+            ff.AddEdge('s', 'p', 3);
+            ff.AddEdge('o', 'p', 2);
+            ff.AddEdge('o', 'q', 3);
+            ff.AddEdge('p', 'r', 2);
+            ff.AddEdge('r', 't', 3);
+            ff.AddEdge('q', 'r', 4);
+            ff.AddEdge('q', 't', 2);
+
+            var maxTraffic = ff.CalculateMaxTraffic('s', 't');
+            Assert.AreEqual(maxTraffic, 5);
         }
     }
 }
