@@ -41,5 +41,13 @@ namespace BotterDSA.Tests
             var search = new BruteForce();
             Assert.AreEqual(search.Search("this is a string", "is"), 2);
         }
+
+        [TestMethod]
+        public void TestBoyerMoore()
+        {
+            var search = new BoyerMoore();
+            //Assert.AreEqual(search.Search("this is a string", "is"), 2);
+            Assert.AreEqual(search.Search("this this a ac tac string", "tac"), 15);
+        }
     }
 }
