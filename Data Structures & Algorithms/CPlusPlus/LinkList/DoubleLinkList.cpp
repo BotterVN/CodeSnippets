@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  Circle
+//  DoubleLinkList
 //
 //  Created by Sunny Jade on 8/24/15.
 //  Copyright © 2015 com.appable. All rights reserved.
@@ -13,9 +13,11 @@ const int n = 10;
 struct Node {
     int value;
     Node *pNext;
+    Node *pPrev;
 };
 struct ListNode{
     Node *pHead;
+    Node *pTail;
 };
 //declare function
 ListNode createLinkList (int arrValue[], ListNode &listnode);
@@ -29,22 +31,22 @@ int main(int argc, const char * argv[]) {
     int arr[n] = { 1,5,2,7,9,7,10,8, 6,0};
     //init ListNode
     ListNode listnode;
-    listnode.pHead = NULL;
+    listnode.pHead = listnode.pTail = NULL;
     
     //create cricle link list
     createLinkList(arr, listnode);
     printListNode(listnode);
     
     //search element has value = x
-    cout<<"\n search result: "<< searchElement(listnode, 3);
+    cout<<"\n search result: "<< searchElement(listnode, 10)<<"\n";
     
     //add 1 element after a element has value = x
-    addElementAfter(listnode,0, 11);
+    addElementAfter(listnode,0, 0);
     printListNode(listnode);
     
     
     //remove element has value = x
-    removeElementAfter(listnode, 0);
+    removeElementAfter(listnode, 7);
     printListNode(listnode);
     
     return 0;
@@ -52,28 +54,28 @@ int main(int argc, const char * argv[]) {
 
 //create circle link list
 ListNode createLinkList (int arrValue[], ListNode &listnode){
-    Node *pTail = NULL;//save last element
-    for( int i = 0 ; i < n; i++) {
+    //first element
+    Node *p = new Node();
+    p->value =  arrValue[0];
+    p->pNext = NULL;
+    p->pPrev = NULL;
+    listnode.pHead = listnode.pTail = p;
+    
+    for( int i = 1 ; i < n; i++) {
         Node *p = new Node();
         p->value =  arrValue[i];
-        if(listnode.pHead == NULL){
-            p->pNext = NULL;
-            listnode.pHead = pTail = p;
-        }else{
-            pTail->pNext = p;
-            pTail = p;
-        }
+        listnode.pTail->pNext = p;
+        p->pPrev = listnode.pTail;
+        listnode.pTail = p;
     }
-    pTail->pNext = listnode.pHead;
+    listnode.pTail->pNext = NULL;
     return listnode;
 }
 
 //search element with value = x
 bool searchElement ( ListNode listnode, int x){
     Node * p = listnode.pHead;
-    bool first = true;
-    while (p != listnode.pHead || first == true) {
-        first = false;
+    while (p != NULL) {
         if( p->value == x){
             return true;
         }
@@ -87,14 +89,21 @@ bool searchElement ( ListNode listnode, int x){
 ListNode addElementAfter (ListNode &listnode,int x,int value){
     
     Node * p = listnode.pHead;
-    bool first = true;
-    while (p != listnode.pHead || first == true) {
-        first = false;
+    while (p != NULL) {
         if( p->value == x){
             Node *newNode = new  Node();
             newNode->value = value;
-            newNode->pNext = p->pNext;
-            p->pNext = newNode;
+            if( p == listnode.pTail){
+                p->pNext = newNode;
+                newNode->pPrev = p;
+                newNode->pNext = NULL;
+                listnode.pTail = newNode;
+            }else{
+                newNode->pNext = p->pNext;
+                p->pNext->pPrev = newNode;
+                newNode->pPrev = p;
+                p->pNext = newNode;
+            }
             p = newNode;
         }
         p = p->pNext;
@@ -105,18 +114,25 @@ ListNode addElementAfter (ListNode &listnode,int x,int value){
 //remove element from listNode
 ListNode removeElementAfter (ListNode &listnode,int x){
     Node * p = listnode.pHead;
-    bool first = true;
-    while (p != listnode.pHead || first == true) {
-        first = false;
+   
+    while (p != NULL && p->pNext != NULL) {
         if( p->value == x){
             Node * q = p->pNext;
             //check if element is deleted is pHead
-            if( q == listnode.pHead){
-                listnode.pHead = q->pNext;
+            if( q == listnode.pTail){
+                p->pNext = NULL;
+                q->pPrev = NULL;
+                listnode.pTail = p;
+            }else{
+                p->pNext = q->pNext;
+                q->pNext->pPrev = p;
+                //xoa q
+                q->pNext = NULL;
+                q->pPrev = NULL;
             }
             
-            p->pNext = q->pNext;
-            q->pNext = NULL;
+            
+            
         }
         p = p->pNext;
     }
@@ -127,9 +143,7 @@ ListNode removeElementAfter (ListNode &listnode,int x){
 //print listnode
 void printListNode(ListNode listnode){
     Node * p = listnode.pHead;
-    bool first = true;
-    while (p != listnode.pHead || first == true) {
-        first = false;
+    while (p != NULL) {
         cout<<p->value<<" ";
         p = p->pNext;
     }
