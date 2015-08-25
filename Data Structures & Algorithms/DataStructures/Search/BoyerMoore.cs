@@ -16,14 +16,9 @@ namespace Botter.CodeSnippets.DSA.Search
             // bad character rule
             var NUM_OF_ASCII_CHARS = (int)(Math.Pow(2, 8) - 1);
 
-            var bcTable = new int[NUM_OF_ASCII_CHARS];
-            for (int n = 0; n < s.Length; n++)
-            {
-                int idx = pattern.Length - 1;
-                while (idx >= 0 && pattern[idx] != s[n])
-                    idx--;
-                bcTable[s[n]] = idx;
-            }
+            var bcTable = Enumerable.Repeat(-1, NUM_OF_ASCII_CHARS).ToArray();
+            for (int n = 0; n < pattern.Length; n++)
+                bcTable[pattern[n]] = n;
 
             // good suffix rule
 
