@@ -21,20 +21,44 @@ namespace Botter.CodeSnippets.DSA.Search
                 bcTable[pattern[n]] = n;
 
             // good suffix rule
+            var gsTable = Enumerable.Repeat(pattern.Length, pattern.Length).ToArray();
+            var suffixs = Enumerable.Repeat(0, pattern.Length).ToArray();
 
-            var i = 0;
-            while(i < s.Length-pattern.Length)
+            for (int i = 0; i < pattern.Length; i++)
             {
-                int j = pattern.Length-1;
-                while (j >= 0 && s[i + j] == pattern[j])
+                int j = i;
+                while (j >= 0 && pattern[j] == pattern[pattern.Length - i - 1 + j])
                     j--;
 
-                if (j == -1)
-                    return i;
+                suffixs[i] = i-j;
+            }
 
-                bc = Math.Max(1, j-bcTable[s[i+j]]);
+            var len = pattern.Length;
+            for (var i = 0; i < len; ++i)
+                gsTable[i] = len;
+            var jj = 0;
+            for (var i = len - 1; i >= 0; --i)
+                if (suffixs[i] == i + 1)
+                    for (; jj < len - 1 - i; ++jj)
+                        if (gsTable[jj] == len)
+                            gsTable[jj] = len - 1 - i;
+            for (var i = 0; i <= len - 2; ++i)
+                gsTable[len - 1 - suffixs[i]] = len - 1 - i;
 
-                i += Math.Max(bc, gs);
+            var idx = 0;
+            while(idx < s.Length-pattern.Length)
+            {
+                int idx2 = pattern.Length-1;
+                while (idx2 >= 0 && s[idx + idx2] == pattern[idx2])
+                    idx2--;
+
+                if (idx2 == -1)
+                    return idx;
+
+                //bc = Math.Max(1, idx2-bcTable[s[idx+idx2]]);
+                gs = gsTable[idx2];
+
+                idx += Math.Max(bc, gs);
             }
 
             return -1;
