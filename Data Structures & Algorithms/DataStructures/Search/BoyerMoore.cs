@@ -36,29 +36,28 @@ namespace Botter.CodeSnippets.DSA.Search
             var len = pattern.Length;
             for (var i = 0; i < len; ++i)
                 gsTable[i] = len;
-            var jj = 0;
             for (var i = len - 1; i >= 0; --i)
                 if (suffixs[i] == i + 1)
-                    for (; jj < len - 1 - i; ++jj)
-                        if (gsTable[jj] == len)
-                            gsTable[jj] = len - 1 - i;
+                    for (var j = 0; j < len - 1 - i; ++j)
+                        if (gsTable[j] == len)
+                            gsTable[j] = len - 1 - i;
             for (var i = 0; i <= len - 2; ++i)
                 gsTable[len - 1 - suffixs[i]] = len - 1 - i;
 
-            var idx = 0;
-            while(idx < s.Length-pattern.Length)
+            // run algorithm
+            for (var i = 0; i < s.Length - pattern.Length; )
             {
-                int idx2 = pattern.Length-1;
-                while (idx2 >= 0 && s[idx + idx2] == pattern[idx2])
-                    idx2--;
+                int j = pattern.Length - 1;
+                while (j >= 0 && s[i + j] == pattern[j])
+                    j--;
 
-                if (idx2 == -1)
-                    return idx;
+                if (j == -1)
+                    return i;
 
-                //bc = Math.Max(1, idx2-bcTable[s[idx+idx2]]);
-                gs = gsTable[idx2];
+                bc = Math.Max(1, j - bcTable[s[i + j]]);
+                gs = gsTable[j];
 
-                idx += Math.Max(bc, gs);
+                i += Math.Max(bc, gs);
             }
 
             return -1;
