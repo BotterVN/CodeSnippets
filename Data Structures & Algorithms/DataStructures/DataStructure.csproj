@@ -81,6 +81,7 @@
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="Sort\SelectionSort.cs" />
     <Compile Include="Sort\ShakerSort.cs" />
+    <Compile Include="Tree\AVL.cs" />
     <Compile Include="Utils\BotterUtils.cs" />
   </ItemGroup>
   <ItemGroup>
