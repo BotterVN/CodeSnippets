@@ -14,50 +14,48 @@ namespace Botter.CodeSnippets.DSA.Search
             var gs = -1;
 
             // bad character rule
+            var NUM_OF_ASCII_CHARS = (int)(Math.Pow(2, 8) - 1);
+
+            var bcTable = Enumerable.Repeat(-1, NUM_OF_ASCII_CHARS).ToArray();
+            for (int n = 0; n < pattern.Length; n++)
+                bcTable[pattern[n]] = n;
 
             // good suffix rule
+            var gsTable = Enumerable.Repeat(pattern.Length, pattern.Length).ToArray();
+            var suffixs = Enumerable.Repeat(0, pattern.Length).ToArray();
 
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < pattern.Length; i++)
             {
-                int j;
-                for (j = pattern.Length-1; j >= 0; j--)
-                {
-                    if(s[i+j] != pattern[j])
-                        break;
-                    else if(j == 0)
-                        return i;
-                }
+                int j = i;
+                while (j >= 0 && pattern[j] == pattern[pattern.Length - i - 1 + j])
+                    j--;
 
-                int k;
-                //
-                var badCharacter = s[i + j];
-                k = j - 1;
-                while (k >= i && pattern[k] != badCharacter)
-                    k--;
+                suffixs[i] = i-j;
+            }
 
-                bc = i + j - k - 1;
+            var len = pattern.Length;
+            for (var i = 0; i < len; ++i)
+                gsTable[i] = len;
+            for (var i = len - 1; i >= 0; --i)
+                if (suffixs[i] == i + 1)
+                    for (var j = 0; j < len - 1 - i; ++j)
+                        if (gsTable[j] == len)
+                            gsTable[j] = len - 1 - i;
+            for (var i = 0; i <= len - 2; ++i)
+                gsTable[len - 1 - suffixs[i]] = len - 1 - i;
 
-                //
-                // find pattern p[j+1:len]
-                var substringLen = pattern.Length - (j + 1);
+            // run algorithm
+            for (var i = 0; i < s.Length - pattern.Length; )
+            {
+                int j = pattern.Length - 1;
+                while (j >= 0 && s[i + j] == pattern[j])
+                    j--;
 
-                if (substringLen != 0)
-                {
-                    k = i + pattern.Length - 2;
-                    bool isMatch = false;
-                    while (k >= i && !isMatch)
-                    {
-                        isMatch = true;
-                        for (int l = 0; l < substringLen; l++)
-                        {
-                            if (s[j + 1 + l] != pattern[l])
-                                isMatch = false;
-                        }
-                    }
-                    gs = i + j - k - 1;
-                }
-                else
-                    gs = pattern.Length - 1;
+                if (j == -1)
+                    return i;
+
+                bc = Math.Max(1, j - bcTable[s[i + j]]);
+                gs = gsTable[j];
 
                 i += Math.Max(bc, gs);
             }
